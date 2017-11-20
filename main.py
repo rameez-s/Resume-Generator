@@ -38,6 +38,10 @@ class Main:
                 frame.tkraise()
                 frame.pack(fill = Tkinter.BOTH)
 
+    def addMore(self, controller):
+        controller.Add.pack_forget()
+        controller.genFields()
+        controller.Add.pack(side = Tkinter.TOP)
 
 class Start(Tkinter.Frame):
     def __init__(self, frame, controller):
@@ -74,198 +78,86 @@ class Profile(Tkinter.Frame):
         headProfLab = Tkinter.Label(self, text = "Profile")
         headProfLab.pack(side = Tkinter.TOP)
 
-        siteFrame = Tkinter.Frame(self)
-        siteFrame.pack(side = Tkinter.BOTTOM)
-        siteLab = Tkinter.Label(siteFrame, text = "Site")
-        siteEntry = Tkinter.Entry(siteFrame)
-        siteLab.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-        siteEntry.pack(fill = Tkinter.X, side = Tkinter.LEFT)
+        fields = ["Full Name", "Site", "Address", "Phone Number", "Email"]
+        self.Fields = []
 
-        addressFrame = Tkinter.Frame(self)
-        addressFrame.pack(side = Tkinter.BOTTOM)
-        addressLab = Tkinter.Label(addressFrame, text = "Address")
-        addressEntry = Tkinter.Entry(addressFrame)
-        addressLab.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-        addressEntry.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-
-        phoneFrame = Tkinter.Frame(self)
-        phoneFrame.pack(side = Tkinter.BOTTOM)
-        phoneLab = Tkinter.Label(phoneFrame, text = "Phone Number")
-        phoneEntry = Tkinter.Entry(phoneFrame)
-        phoneLab.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-        phoneEntry.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-
-        emailFrame = Tkinter.Frame(self)
-        emailFrame.pack(side = Tkinter.BOTTOM)
-        emailLab = Tkinter.Label(emailFrame, text = "Email Address")
-        emailEntry = Tkinter.Entry(emailFrame)
-        emailLab.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-        emailEntry.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-
-        nameFrame = Tkinter.Frame(self)
-        nameFrame.pack(side = Tkinter.BOTTOM)
-        fullNameLab = Tkinter.Label(nameFrame, text = "Full Name")
-        fullName = Tkinter.Entry(nameFrame)
-        fullNameLab.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-        fullName.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-
-        self.text = [fullName, emailEntry, phoneEntry, addressEntry, siteEntry]
-
-    def getText(self):
-        return self.text
+        for f in fields:
+            self.Fields.append(Field(controller = self, label = f))
 
 class Education(Tkinter.Frame):
     def __init__(self, frame, controller):
         Tkinter.Frame.__init__(self, frame)
         headEdLab = Tkinter.Label(self, text = "Education")
         headEdLab.pack(side = Tkinter.TOP)
+        self.Fields = []
+        self.genFields()
+        self.Add = Tkinter.Button(self, text = "Add More", bg = "#B3E5FC", fg = "white", command = lambda x = self: controller.addMore(x))
+        self.Add.pack(side = Tkinter.TOP)
 
-        gradFrame = Tkinter.Frame(self)
-        gradFrame.pack(side = Tkinter.BOTTOM)
-        gradLab = Tkinter.Label(gradFrame, text = "Graduation Date")
-        gradEntry = Tkinter.Entry(gradFrame)
-        gradLab.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-        gradEntry.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-
-        gpaFrame = Tkinter.Frame(self)
-        gpaFrame.pack(side = Tkinter.BOTTOM)
-        gpaLab = Tkinter.Label(gpaFrame, text = "GPA")
-        gpaEntry = Tkinter.Entry(gpaFrame)
-        gpaLab.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-        gpaEntry.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-
-        majorFrame = Tkinter.Frame(self)
-        majorFrame.pack(side = Tkinter.BOTTOM)
-        majorLab = Tkinter.Label(majorFrame, text = "Major")
-        majorEntry = Tkinter.Entry(majorFrame)
-        majorLab.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-        majorEntry.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-
-        degFrame = Tkinter.Frame(self)
-        degFrame.pack(side = Tkinter.BOTTOM)
-        degLab = Tkinter.Label(degFrame, text = "Degree")
-        degEntry = Tkinter.Entry(degFrame)
-        degLab.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-        degEntry.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-
-        uniFrame = Tkinter.Frame(self)
-        uniFrame.pack(side = Tkinter.BOTTOM)
-        uniLab = Tkinter.Label(uniFrame, text = "University")
-        uniEntry = Tkinter.Entry(uniFrame)
-        uniLab.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-        uniEntry.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-
-        self.text = [uniEntry, degEntry, majorEntry, gpaEntry]
-
-    def getText(self):
-        return self.text
+    def genFields(self):
+        fields = ["University", "Degree", "Major", "GPA", "Graduation Date"]
+        for f in fields:
+            self.Fields.append(Field(controller = self, label = f))
 
 class Experience(Tkinter.Frame):
     def __init__(self, frame, controller):
         Tkinter.Frame.__init__(self, frame)
         headExLab = Tkinter.Label(self, text = "Experience")
         headExLab.pack(side = Tkinter.TOP)
+        self.Fields = []
+        self.genFields()
+        self.Add = Tkinter.Button(self, text = "Add More", bg = "#B3E5FC", fg = "white", command = lambda x = self: controller.addMore(x))
+        self.Add.pack(side = Tkinter.TOP)
 
-        compFrame = Tkinter.Frame(self)
-        compFrame.pack(side = Tkinter.TOP)
-        compLab = Tkinter.Label(compFrame, text = "Company")
-        compEntry = Tkinter.Entry(compFrame)
-        compLab.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-        compEntry.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-
-        jobFrame = Tkinter.Frame(self)
-        jobFrame.pack(side = Tkinter.TOP)
-        jobLab = Tkinter.Label(jobFrame, text = "Job Title")
-        jobEntry = Tkinter.Entry(jobFrame)
-        jobLab.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-        jobEntry.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-
-        respFrame = Tkinter.Frame(self)
-        respFrame.pack(side = Tkinter.TOP)
-        respLab = Tkinter.Label(respFrame, text = "University")
-        respEntry = Tkinter.Entry(respFrame)
-        respLab.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-        respEntry.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-
-        self.text = [compEntry, jobEntry, respEntry]
-
-    def getText(self):
-        return self.text
+    def genFields(self):
+        fields = ["Company", "Job Title", "Location", "Start Date", "End Date", "Job Responsibilities"]
+        for f in fields:
+            self.Fields.append(Field(controller = self, label = f))
 
 class Skills(Tkinter.Frame):
     def __init__(self, frame, controller):
         Tkinter.Frame.__init__(self, frame)
         headSkLab = Tkinter.Label(self, text = "Skills")
         headSkLab.pack(side = Tkinter.TOP)
+        self.Fields = []
+        self.genFields()
+        self.Add = Tkinter.Button(self, text = "Add More", bg = "#B3E5FC", fg = "white", command = lambda x = self: controller.addMore(x))
+        self.Add.pack(side = Tkinter.TOP)
 
-        skillFrame = Tkinter.Frame(self)
-        skillFrame.pack(side = Tkinter.TOP)
-        skillLab = Tkinter.Label(skillFrame, text = "Skills")
-        skillEntry = Tkinter.Entry(skillFrame)
-        skillLab.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-        skillEntry.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-
-        self.text = [skillEntry]
-
-    def getText(self):
-        return self.text
+    def genFields(self):
+        fields = ["Skill Name", "Skill Details"]
+        for f in fields:
+            self.Fields.append(Field(controller = self, label = f))
 
 class Projects(Tkinter.Frame):
     def __init__(self, frame, controller):
         Tkinter.Frame.__init__(self, frame)
         headProjLab = Tkinter.Label(self, text = "Projects")
         headProjLab.pack(side = Tkinter.TOP)
+        self.Fields = []
+        self.genFields()
+        self.Add = Tkinter.Button(self, text = "Add More", bg = "#B3E5FC", fg = "white", command = lambda x = self: controller.addMore(x))
+        self.Add.pack(side = Tkinter.TOP)
 
-        nameFrame = Tkinter.Frame(self)
-        nameFrame.pack(side = Tkinter.TOP)
-        nameLab = Tkinter.Label(nameFrame, text = "Project Name")
-        nameEntry = Tkinter.Entry(nameFrame)
-        nameLab.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-        nameEntry.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-
-        descFrame = Tkinter.Frame(self)
-        descFrame.pack(side = Tkinter.TOP)
-        descLab = Tkinter.Label(descFrame, text = "Description")
-        descEntry = Tkinter.Entry(descFrame)
-        descLab.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-        descEntry.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-
-        linkFrame = Tkinter.Frame(self)
-        linkFrame.pack(side = Tkinter.TOP)
-        linkLab = Tkinter.Label(linkFrame, text = "Link")
-        linkEntry = Tkinter.Entry(linkFrame)
-        linkLab.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-        linkEntry.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-
-        self.text = [nameEntry, descEntry, linkEntry]
-
-    def getText(self):
-        return self.text
+    def genFields(self):
+        fields = ["Project Name", "Description", "Technologies", "Link"]
+        for f in fields:
+            self.Fields.append(Field(controller = self, label = f))
 
 class Awards(Tkinter.Frame):
     def __init__(self, frame, controller):
         Tkinter.Frame.__init__(self, frame)
         headAwLab = Tkinter.Label(self, text = "Awards")
         headAwLab.pack(side = Tkinter.TOP)
+        self.Fields = []
+        self.genFields()
+        self.Add = Tkinter.Button(self, text = "Add More", bg = "#B3E5FC", fg = "white", command = lambda x = self: controller.addMore(x))
+        self.Add.pack(side = Tkinter.TOP)
 
-        nameFrame = Tkinter.Frame(self)
-        nameFrame.pack(side = Tkinter.TOP)
-        nameLab = Tkinter.Label(nameFrame, text = "Award Name")
-        nameEntry = Tkinter.Entry(nameFrame)
-        nameLab.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-        nameEntry.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-
-        descFrame = Tkinter.Frame(self)
-        descFrame.pack(side = Tkinter.TOP)
-        descLab = Tkinter.Label(descFrame, text = "Description")
-        descEntry = Tkinter.Entry(descFrame)
-        descLab.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-        descEntry.pack(fill = Tkinter.X, side = Tkinter.LEFT)
-
-        self.text = [nameEntry, descEntry]
-
-    def getText(self):
-        return self.text
+    def genFields(self):
+        fields = ["Award Name", "Description", "Award Date"]
+        for f in fields:
+            self.Fields.append(Field(controller = self, label = f))
 
 class Generate(Tkinter.Frame):
     def __init__(self, frame, controller):
@@ -275,16 +167,35 @@ class Generate(Tkinter.Frame):
 
         self.controller = controller
         genBut = Tkinter.Button(self, text = "Generate", bg = "#B3E5FC", fg = "white", command = self.collect)
-        genBut.pack(fill = Tkinter.X, side = Tkinter.BOTTOM)
+        genBut.pack(side = Tkinter.BOTTOM, pady = 100)
 
     def collect(self):
         self.RAWINFO = []
         print self.controller.frames.keys()
         for N,F in self.controller.frames.items():
             if N != "Start" and N != "Template" and N != "Generate":
-                for e in F.text:
+                for e in F.Fields:
+                    print e.get()
                     self.RAWINFO.append(e.get())
         file = open("resumeRaw.txt", "w")
-        file.writelines(self.RAWINFO)
+        for w in self.RAWINFO:
+            file.write(str(w[0]) + "~|~" + str(w[1]) + "\n")
+
+class Field:
+    def __init__(self, controller, label):
+        self.controller = controller
+        self.lab = label
+
+        self.Frame = Tkinter.Frame(self.controller)
+        self.Frame.pack(side = Tkinter.TOP)
+
+        self.Label = Tkinter.Label(self.Frame, text = self.lab)
+        self.Label.pack(fill = Tkinter.BOTH, side = Tkinter.LEFT)
+
+        self.Entry = Tkinter.Entry(self.Frame)
+        self.Entry.pack(fill = Tkinter.BOTH, side = Tkinter.RIGHT)
+
+    def get(self):
+        return [self.lab, self.Entry.get()]
 
 main = Main()
