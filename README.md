@@ -12,9 +12,9 @@ A resume is a quick outline of an individual's experiences and skills for employ
 For the first checkpoint I'll demo the initial windows which ask the user for information via text or Speech. The information should output to a simple file.
 
 ## Libraries
-- PyLaTeX
-- python-latex
-- Google Speech API
+- MikTex
+- Speech Recognition
+- Tkinter
 
 ## Why this is an 'A' project
 - Allows individuals to create a quick base resume to get them started
